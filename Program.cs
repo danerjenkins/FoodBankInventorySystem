@@ -8,6 +8,7 @@ Console.WriteLine("We help tracking items, monitoring expiration dates, and mana
 
 while (run)
 {
+    Console.WriteLine();
     Console.WriteLine("To choose an action, type the corresponding number.");
     Console.WriteLine("1. Add a new item");
     Console.WriteLine("2. Remove an item");
@@ -15,6 +16,7 @@ while (run)
     Console.WriteLine("4. Exit the program");
     Console.Write("What would you like to do? ");
     string input = Console.ReadLine();
+    Console.WriteLine();
     if (input == "1")
     {
         bool isValidInput = false;
@@ -80,6 +82,7 @@ while (run)
         } while (!isValidInput);
 
         foodItems.Add(new FoodItem(name, category, quantity, expirationDate));
+        Console.WriteLine("Item added successfully.");
     }
     else if (input == "2")
     {
@@ -95,7 +98,12 @@ while (run)
                 if (foodItems[i].Name == name)
                 {
                     foodItems.RemoveAt(i);
+                    Console.WriteLine("Item removed successfully.");    
                     break;
+                }
+                else if (i == foodItems.Count - 1)
+                {
+                    Console.WriteLine("Item not found.");
                 }
             }
         }
@@ -108,10 +116,13 @@ while (run)
         }
         else
         {
+            Console.WriteLine("Current items in the inventory:");
             for (int i = 0; i < foodItems.Count; i++)
             {
+                Console.Write("Item Number: " + (i + 1) + " ");
                 Console.WriteLine("Food Name: " + foodItems[i].Name + " Food Category: " + foodItems[i].Category + " Item Quantity:  " + foodItems[i].Quantity + " Expiration Date: " + foodItems[i].ExpirationDate);
             }
+            Console.WriteLine();
         }
     }
     else if (input == "4")
